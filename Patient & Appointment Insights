@@ -1,0 +1,22 @@
+#Patient & Appointment Insights#
+
+#1.Find the Most Common Appointment Status#
+select Status,count( *) as most_common_status from appointments
+group by status
+order by most_common_status desc
+Limit 1;
+
+#2.Identify the Busiest Doctor#
+
+SELECT d.name, d.specialty,a.doctor_id, Count(a.appointment_id) as total FROM hospitaldb.appointments a
+Join doctors d
+on d.doctor_id=a.doctor_id
+Group by d.doctor_id,d.name,d.specialty
+order by total desc
+Limit 1;
+
+#3. Determine No-Show Rates#
+
+select 
+(count(case when status ="cancelled" then 1 end)*100/count(*)) as show_percent
+from appointments;
