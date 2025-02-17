@@ -1,0 +1,24 @@
+#Advanced Insights#
+#1.Find High-Value Patients#
+select  a.patient_id, concat(pa.first_name," " ,pa.last_name) as full_name, sum(amount) as Total
+From Payments p
+Join appointments a
+on a.appointment_id=p.appointment_id
+join patients pa
+on pa.patient_id=a.patient_id
+group by  a.patient_id
+order by Total desc
+Limit 1;
+
+#2. Doctor Efficiency Analysis#
+With Cte1 as(
+select a.doctor_id,d.name,count(a.appointment_id) as total,
+Count(Case when a.status="Completed" then 1 End) as Completed_appointments
+from appointments a
+join doctors d
+on d.doctor_id=a.doctor_id
+group by d.doctor_id, d.name
+)
+select *, Round((Completed_appointments * 100)/(total),1) as completion_rate
+from cte1
+order by completion_rate Desc
