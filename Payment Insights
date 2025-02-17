@@ -1,0 +1,17 @@
+#Payment Insights#
+
+#1.Analyze Payment Methods#
+Select payment_method, Count(*) as Most_Common_Method from payments
+group by payment_method
+order by Most_Common_Method Desc
+Limit 1;
+
+#2.Find the Total Revenue from from completed appointments#
+select sum(amount) as Total_Revenue from payments p
+Join appointments a
+on a.appointment_id=p.appointment_id
+where a.status="Completed";
+
+#3.Identify Unpaid Appointments#
+select appointment_id from payments
+where status="Pending";
