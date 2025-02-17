@@ -126,6 +126,10 @@ This project focuses on analyzing patient appointments, payments, and doctor eff
 
 - Interpret findings and take action based on insights.
 
+# My Interactive Dashboard
+
+[🔗 View My Dashboard](https://lnkd.in/gJgcY8Ez)
+
 # Future Improvements
 
 - Integrate Machine Learning to predict patient no-shows.
